@@ -100,14 +100,28 @@
     //使用颜色数据
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 6, (GLfloat *)NULL + 3);
-
+    
+//    //使用纹理数据
+//    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+//    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, (GLfloat *)NULL + 6);
+//
+//
+//    //获取纹理路径
+//    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"green" ofType:@"png"];
+//
+//    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:@"1",GLKTextureLoaderOriginBottomLeft, nil];
+//    GLKTextureInfo *textureInfo = [GLKTextureLoader textureWithContentsOfFile:filePath options:options error:nil];
     
     //着色器
     self.mEffect = [[GLKBaseEffect alloc]init];
-
+//    self.mEffect.texture2d0.enabled = GL_TRUE;
+//    self.mEffect.texture2d0.name = textureInfo.name;
+    
+    
     //投影视图
     CGSize size = self.view.bounds.size;
-    float aspect = fabs(size.width / size.height);
+    //float aspect = fabs(size.width / size.height);
+    float aspect = size.width / size.height;
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(90.0), aspect, 0.1f, 100.0);
     projectionMatrix = GLKMatrix4Scale(projectionMatrix, 1.0f, 1.0f, 1.0f);
     self.mEffect.transform.projectionMatrix = projectionMatrix;
